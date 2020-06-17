@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HeaderCuadrado extends StatelessWidget {
   @override
@@ -306,6 +306,46 @@ class _HeaderWaveGradientPainter extends CustomPainter{
 }
 
 class IconHeader extends StatelessWidget {
+  IconHeader({Key key, @required this.icon, @required this.title, @required this.subtitle, this.color1=Colors.grey, this.color2=Colors.blueGrey});
+  
+  final IconData icon;
+  final String title;
+  final String subtitle;
+  final Color color1;
+  final Color color2;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color colorBlanco = Colors.white.withOpacity(0.7);
+    return Stack(
+      children: <Widget>[
+        _IconHeaderBackground(color1: this.color1, color2:this.color2),
+        Positioned(
+          top: -50,
+          left:-70,
+          child: FaIcon(this.icon, size: 250, color: Colors.white.withOpacity(0.2),)),
+        Column(
+          children: <Widget>[
+            SizedBox(height: 80, width: double.infinity,),
+            Text(this.subtitle, style: TextStyle(color: colorBlanco),),
+            SizedBox(height: 20),
+            Text(this.title, style: TextStyle(color: colorBlanco, fontSize: 25, fontWeight: FontWeight.bold),),
+            SizedBox(height: 20),
+            FaIcon(this.icon, size: 90, color: Colors.white),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class _IconHeaderBackground extends StatelessWidget {
+  const _IconHeaderBackground({
+    Key key, this.color1, this.color2,
+  }) : super(key: key);
+  final Color color1;
+  final Color color2;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -318,8 +358,8 @@ class IconHeader extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: <Color>[
-            Color(0xff526BF6),
-            Color(0xff67ACF2),
+           this.color1,
+           this.color2,
         ])
       ),
     );
