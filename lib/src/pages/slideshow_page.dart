@@ -1,14 +1,18 @@
+import 'package:disenos_course/src/theme/theme.dart';
 import 'package:disenos_course/src/widgets/slideshow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 
 class SlideshowPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final appTheme = Provider.of<ThemeChanger>(context);
+  final accentColor = appTheme.currentTheme.accentColor;
     return Scaffold(
-      backgroundColor: Colors.lightBlue[100],
+      backgroundColor:(appTheme.darkTheme) ? appTheme.currentTheme.backgroundColor : Colors.lightBlue[100],
       body: Slideshow(
         slides: <Widget>[
           SvgPicture.asset('assets/svg/slides/slide-1.svg'),
@@ -18,7 +22,7 @@ class SlideshowPage extends StatelessWidget {
           SvgPicture.asset('assets/svg/slides/slide-5.svg'),
         ],
         topDots: false,
-        primaryColor: Color(0xff367b85),
+        primaryColor: (appTheme.darkTheme) ? accentColor : Color(0xff367b85),
         secondaryColor: Colors.grey,
         primaryBullet: 18,
         secondaryBullet: 12,

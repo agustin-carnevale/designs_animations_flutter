@@ -1,25 +1,26 @@
-// import 'package:disenos_course/src/pages/animaciones_page.dart';
-// import 'package:disenos_course/src/pages/graficas_circulares_page.dart';
-// import 'package:disenos_course/src/pages/headers_page.dart';
-// import 'package:disenos_course/src/pages/slideshow_page.dart';
-// import 'package:disenos_course/src/retos/cuadrado_animado_page.dart';
-// import 'package:disenos_course/src/pages/pinterest_page.dart';
-// import 'package:disenos_course/src/pages/emergency_page.dart';
-import 'package:disenos_course/src/pages/sliver_list_page.dart';
+import 'package:disenos_course/src/pages/launcher_page.dart';
+import 'package:disenos_course/src/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) => ThemeChanger(2),
+      child: MyApp()
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    final currentTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return MaterialApp(
+      theme: currentTheme,
       title: 'Diseños App',
       debugShowCheckedModeBanner: false,
-      home: SliverListPage(),
+      home: LauncherPage(),
     );
   }
 }
