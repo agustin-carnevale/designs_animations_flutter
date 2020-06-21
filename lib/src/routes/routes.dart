@@ -1,3 +1,4 @@
+import 'package:disenos_course/src/pages/animaciones_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -13,7 +14,7 @@ final pageRoutes = <_Route>[
   _Route(FontAwesomeIcons.slideshare, "SlideShow", SlideshowPage()),
   _Route(FontAwesomeIcons.ambulance, "Emergency", EmergencyPage()),
   _Route(FontAwesomeIcons.heading, "Headers", HeadersPage()),
-  _Route(FontAwesomeIcons.peopleCarry, "Animated Square", CuadradoAnimadoPage()),
+  _Route(FontAwesomeIcons.peopleCarry, "Animated Square", AnimacionesPage()),
   _Route(FontAwesomeIcons.circleNotch, "Progress Circular Bar", GraficasCircularesPage()),
   _Route(FontAwesomeIcons.pinterest, "Pinterest", PinterestPage()),
   _Route(FontAwesomeIcons.mobile, "Slivers", SliverListPage()),

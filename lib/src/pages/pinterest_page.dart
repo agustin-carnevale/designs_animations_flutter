@@ -26,27 +26,36 @@ class _Menu extends StatelessWidget {
   Widget build(BuildContext context) {
   final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
 
-    final widthScreen = MediaQuery.of(context).size.width;
+    double widthScreen = MediaQuery.of(context).size.width;
     final show = Provider.of<_MenuModel>(context).show;
+
+    if(widthScreen >500){
+      widthScreen = widthScreen -300;
+    }
+
     return Positioned(
       bottom: 40,
       child: Container(
         // color: Colors.red,
         width: widthScreen,
-        child: Align(
-          child:PinterestMenu(
-            show:show,
-            backgroundColor: appTheme.scaffoldBackgroundColor,
-            activeColor: appTheme.accentColor,
-            inactiveColor: Colors.blueGrey,
-             items: [
-              PinterestButton(icon: Icons.pie_chart, onPressed: (){print('Icon Pie_chart');}),
-              PinterestButton(icon: Icons.search, onPressed: (){print('Icon Search');} ),
-              PinterestButton(icon: Icons.notifications, onPressed: (){print('Icon Notificatinos');} ),
-              PinterestButton(icon: Icons.verified_user, onPressed: (){print('Icon supervised_user_circle');} ),
-            ],
-          ) ,
-        ),
+        child: Row(
+          children: <Widget>[
+            Spacer(),
+            PinterestMenu(
+              show:show,
+              backgroundColor: appTheme.scaffoldBackgroundColor,
+              activeColor: appTheme.accentColor,
+              inactiveColor: Colors.blueGrey,
+              items: [
+                PinterestButton(icon: Icons.pie_chart, onPressed: (){print('Icon Pie_chart');}),
+                PinterestButton(icon: Icons.search, onPressed: (){print('Icon Search');} ),
+                PinterestButton(icon: Icons.notifications, onPressed: (){print('Icon Notificatinos');} ),
+                PinterestButton(icon: Icons.verified_user, onPressed: (){print('Icon supervised_user_circle');} ),
+              ],
+            ),
+            Spacer(),
+        ]
+        )
       )
     );
   }
@@ -88,13 +97,20 @@ class _PinterestGridState extends State<PinterestGrid> {
 
   @override
   Widget build(BuildContext context) {
+    int count;
+    if(MediaQuery.of(context).size.width>500){
+      count=3;
+    }else{
+      count= 2;
+    }
+
     return StaggeredGridView.countBuilder(
       controller: controller,
-      crossAxisCount: 4,
+      crossAxisCount: count,
       itemCount: items.length,
       itemBuilder: (BuildContext context, int index) => PinterestItem(index: index),
       staggeredTileBuilder: (int index) =>
-          StaggeredTile.count(2, index.isEven ? 2 : 3),
+          StaggeredTile.count(1, index.isEven ? 1 : 2),
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
     );

@@ -67,7 +67,7 @@ class CustomRadialProgress extends StatelessWidget {
       child: RadialProgress(
         porcentaje: porcentaje, 
         color: color, 
-        colorSecundario:appTheme.textTheme.bodyText1.color,
+        colorSecundario: appTheme.textTheme.bodyText2.color,
         grosor: 15.0,
         grosorSecundario: 7.0,
       ),

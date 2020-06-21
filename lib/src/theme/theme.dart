@@ -51,7 +51,18 @@ class ThemeChanger with ChangeNotifier{
     _customTheme = value;
 
     if(value){
-      _currentTheme = ThemeData.light();
+      _currentTheme = ThemeData.dark().copyWith(
+        accentColor: Color(0xff48A0EB),
+        primaryColorLight: Colors.white,
+        scaffoldBackgroundColor: Color(0xff16202B),
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: Colors.white),
+        ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.blue,
+        )
+
+      );
     }else{
       _currentTheme = ThemeData.light();
     }
